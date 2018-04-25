@@ -1,0 +1,36 @@
+---
+title: "Dataset"
+---
+
+>   The dataset that i used was from Tom Slee, who used a data scraping code to gather data from Airbnb's website. I chose data from Airbnb listings in philadelphia that were collected in 2017. [Here](http://tomslee.net/airbnb-data-collection-get-the-data) you can find the datasource. For analysis, I used only listings that either had at least 1 review, as a listing with no reviews could not have a overall satisfaction rating, and those that had a rating of zero, as there were no values from 2 -> 0 on the overall satisfaction rating scale. This resulted in 2465 total listings being accounted for during statistical analysis. 
+>   The variables that were available were room type, neighborhood, reviews, overall satisfaction with the stay, and price. I did not analyze room id, host id, accomodation size, bedrooms, and latitude/longitude that were also included in this dataset. 
+
+--- 
+
+>Starting with room type, below is the frequency plot of all room types: entire home, private room and shared room.
+
+```{r}
+barplot(table(room_type))
+count(room_type)
+```
+
+>Next is neighborhood, there were 122 neighborhoods identified in the data:
+
+```{r}
+barplot(table(neighborhood))
+count(neighborhood)
+```
+
+> Now with the total amount of reviews for a single listing/property
+
+```{r}
+hist(reviews)
+summary(reviews)
+```
+
+>And now lastly with the price distribution of the listings
+
+```{r}
+hist(price)
+summary(price)
+```
