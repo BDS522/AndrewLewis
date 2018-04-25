@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Analysis</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BDS 522</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">BDS 522 Project</a>
+</li>
+<li>
+  <a href="about.html">Data</a>
+</li>
+<li>
+  <a href="analysis.html">Analysis</a>
+</li>
+<li>
+  <a href="Discussion.html">Discussion/Conclusion</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Analysis</h1>
+
+</div>
+
+
+<blockquote>
+<p>For this dataset I will be looking at hypotheses relating to overall satisfaction with the stay. Starting with room type, I predict that a entire home will result in higher average overall satisfaction as compaired to a full room or shared room accomodations. I hypothesize that there will be a relationship between neighborhoods and overall satisfaction, but I have no prenotions of which neighborhoods will be higher or lower than the average rating. I predict that number of reviews will have a positive correlation with the overall rating of the listing, as an initial positive review may lead to more clients renting that listing and having more positive experiences, which drive even more reviews/bookings. Lastly I predict that increased price will have a positive relationship in regards to overall satisfaction.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>Below is the linear regression that I ran with accomodations, neighborhoods, reviews, and price’s effects controlled for all other factors on overall satisfaction with the stay.</p>
+</blockquote>
+<pre class="r"><code>summary(airbnbreg)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = overall_satisfaction ~ factor(room_type) + factor(neighborhood) + 
+##     reviews + price)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8229 -0.2133  0.1155  0.2240  0.7765 
+## 
+## Coefficients:
+##                                             Estimate  Std. Error t value
+## (Intercept)                               4.13366015  0.10398482  39.753
+## factor(room_type)Private room             0.05122268  0.00652210   7.854
+## factor(room_type)Shared room             -0.01067180  0.02100361  -0.508
+## factor(neighborhood)ANDORRA               0.28946613  0.13582391   2.131
+## factor(neighborhood)ASTON_WOODBRIDGE      0.80178802  0.16938384   4.734
+## factor(neighborhood)BELLA_VISTA           0.63816637  0.10564847   6.040
+## factor(neighborhood)BELMONT               0.35006972  0.13397387   2.613
+## factor(neighborhood)BREWERYTOWN           0.48262575  0.10807001   4.466
+## factor(neighborhood)BUSTLETON             0.68555901  0.12429197   5.516
+## factor(neighborhood)CALLOWHILL            0.51846228  0.10656893   4.865
+## factor(neighborhood)CEDAR_PARK            0.56501172  0.10493624   5.384
+## factor(neighborhood)CEDARBROOK            0.34241137  0.16949704   2.020
+## factor(neighborhood)CENTER_CITY           0.47710181  0.10541027   4.526
+## factor(neighborhood)CHESTNUT_HILL         0.59425222  0.10837022   5.484
+## factor(neighborhood)CHINATOWN             0.32667207  0.10781983   3.030
+## factor(neighborhood)COBBS_CREEK           0.55393674  0.11800831   4.694
+## factor(neighborhood)DICKINSON_NARROWS     0.62038611  0.10731341   5.781
+## factor(neighborhood)DUNLAP                0.35137164  0.25415212   1.383
+## factor(neighborhood)EAST_FALLS            0.61755410  0.10759693   5.740
+## factor(neighborhood)EAST_KENSINGTON       0.71082667  0.10720610   6.630
+## factor(neighborhood)EAST_OAK_LANE         0.65942143  0.11313488   5.829
+## factor(neighborhood)EAST_PARK             0.06949625  0.11841372   0.587
+## factor(neighborhood)EAST_PARKSIDE         0.33348647  0.13403897   2.488
+## factor(neighborhood)EAST_PASSYUNK         0.67335717  0.10593316   6.356
+## factor(neighborhood)EAST_POPLAR           0.58690353  0.11544215   5.084
+## factor(neighborhood)EASTWICK              0.58646270  0.13238882   4.430
+## factor(neighborhood)ELMWOOD               0.67705609  0.19405196   3.489
+## factor(neighborhood)FAIRMOUNT             0.48990490  0.10542973   4.647
+## factor(neighborhood)FELTONVILLE           0.80263913  0.17965736   4.468
+## factor(neighborhood)FISHTOWN              0.71208138  0.10447500   6.816
+## factor(neighborhood)FITLER_SQUARE         0.75949967  0.11059875   6.867
+## factor(neighborhood)FOX_CHASE             0.72404610  0.16164827   4.479
+## factor(neighborhood)FRANCISVILLE          0.57524158  0.10583364   5.435
+## factor(neighborhood)FRANKFORD             0.22894786  0.12346513   1.854
+## factor(neighborhood)FRANKLINVILLE         0.29601097  0.11995315   2.468
+## factor(neighborhood)GARDEN_COURT          0.45160831  0.10769899   4.193
+## factor(neighborhood)GERMANTOWN_EAST       0.64298197  0.12939078   4.969
+## factor(neighborhood)GERMANTOWN_MORTON     0.35992729  0.12704908   2.833
+## factor(neighborhood)GERMANTOWN_PENN_KNOX  0.51031340  0.11036256   4.624
+## factor(neighborhood)GERMANTOWN_SOUTHWEST  0.33747634  0.11659961   2.894
+## factor(neighborhood)GERMANTOWN_WEST_CENT  0.45049227  0.10728636   4.199
+## factor(neighborhood)GERMANTOWN_WESTSIDE   0.56008268  0.11450796   4.891
+## factor(neighborhood)GERMANY_HILL          0.73779621  0.17004533   4.339
+## factor(neighborhood)GIRARD_ESTATES        0.77166771  0.11301100   6.828
+## factor(neighborhood)GRADUATE_HOSPITAL     0.68469150  0.10452291   6.551
+## factor(neighborhood)GRAYS_FERRY           0.43396243  0.10724421   4.046
+## factor(neighborhood)GREENWICH             0.65555751  0.12602387   5.202
+## factor(neighborhood)HADDINGTON            0.30316594  0.34401634   0.881
+## factor(neighborhood)HARROWGATE            0.33246911  0.11312933   2.939
+## factor(neighborhood)HARTRANFT             0.45552879  0.10709677   4.253
+## factor(neighborhood)HAVERFORD_NORTH       0.38793485  0.12943435   2.997
+## factor(neighborhood)HAWTHORNE             0.67274301  0.10764990   6.249
+## factor(neighborhood)HOLMESBURG            0.44240285  0.12602533   3.510
+## factor(neighborhood)KINGSESSING           0.28636539  0.10959327   2.613
+## factor(neighborhood)LAWNDALE              0.66021708  0.15076324   4.379
+## factor(neighborhood)LEXINGTON_PARK        0.83179973  0.16953714   4.906
+## factor(neighborhood)LOGAN                 0.42773792  0.14676531   2.914
+## factor(neighborhood)LOGAN_SQUARE          0.56647922  0.10492357   5.399
+## factor(neighborhood)LOWER_MOYAMENSING     0.68759006  0.10727121   6.410
+## factor(neighborhood)LUDLOW                0.41171991  0.15072052   2.732
+## factor(neighborhood)MANAYUNK              0.61065235  0.10739008   5.686
+## factor(neighborhood)MANTUA                0.45008505  0.10649792   4.226
+## factor(neighborhood)MAYFAIR               0.42870284  0.14341481   2.989
+## factor(neighborhood)MILL_CREEK            0.45975015  0.11203743   4.104
+## factor(neighborhood)MORRELL_PARK         -0.68968667  0.34401774  -2.005
+## factor(neighborhood)MOUNT_AIRY_EAST       0.63433928  0.10720962   5.917
+## factor(neighborhood)MOUNT_AIRY_WEST       0.61701111  0.10623277   5.808
+## factor(neighborhood)NEWBOLD               0.63941803  0.10580886   6.043
+## factor(neighborhood)NORTH_CENTRAL         0.24834444  0.10793505   2.301
+## factor(neighborhood)NORTHERN_LIBERTIES    0.71763689  0.10520891   6.821
+## factor(neighborhood)NORTHWOOD             0.52226374  0.14671204   3.560
+## factor(neighborhood)OGONTZ                0.35045764  0.25415158   1.379
+## factor(neighborhood)OLD_CITY              0.55468115  0.10518468   5.273
+## factor(neighborhood)OLD_KENSINGTON        0.59647776  0.10727821   5.560
+## factor(neighborhood)OLNEY                 0.62161922  0.12509698   4.969
+## factor(neighborhood)OVERBROOK             0.61758813  0.11981588   5.154
+## factor(neighborhood)OXFORD_CIRCLE         0.27815219  0.12814758   2.171
+## factor(neighborhood)PACKER_PARK           0.83763692  0.34406671   2.435
+## factor(neighborhood)PASCHALL             -0.08299747  0.12936925  -0.642
+## factor(neighborhood)PASSYUNK_SQUARE       0.61195373  0.10503593   5.826
+## factor(neighborhood)PENNSPORT             0.70223330  0.10732811   6.543
+## factor(neighborhood)PENNYPACK             0.33559942  0.25428327   1.320
+## factor(neighborhood)PENNYPACK_PARK        0.80757471  0.25407390   3.179
+## factor(neighborhood)PENROSE               0.33817782  0.16948856   1.995
+## factor(neighborhood)POINT_BREEZE          0.66162717  0.10457904   6.327
+## factor(neighborhood)POWELTON              0.54023570  0.10908118   4.953
+## factor(neighborhood)QUEEN_VILLAGE         0.60750858  0.10545398   5.761
+## factor(neighborhood)RHAWNHURST            0.80283948  0.12703656   6.320
+## factor(neighborhood)RICHMOND              0.57921606  0.11158949   5.191
+## factor(neighborhood)RITTENHOUSE           0.50576956  0.10415536   4.856
+## factor(neighborhood)RIVERFRONT            0.47494870  0.11418572   4.159
+## factor(neighborhood)ROXBOROUGH            0.62004251  0.11021216   5.626
+## factor(neighborhood)ROXBOROUGH_PARK       0.81530207  0.15559622   5.240
+## factor(neighborhood)SHARSWOOD             0.66240494  0.14333526   4.621
+## factor(neighborhood)SOCIETY_HILL          0.56262276  0.10701807   5.257
+## factor(neighborhood)SOMERTON              0.84732209  0.16177265   5.238
+## factor(neighborhood)SOUTHWEST_SCHUYLKILL  0.62324536  0.13396140   4.652
+## factor(neighborhood)SPRING_GARDEN         0.57028753  0.10533316   5.414
+## factor(neighborhood)SPRUCE_HILL           0.47292039  0.10482165   4.512
+## factor(neighborhood)STADIUM_DISTRICT      0.60769288  0.12028914   5.052
+## factor(neighborhood)STANTON               0.20966947  0.13801588   1.519
+## factor(neighborhood)STRAWBERRY_MANSION    0.84660223  0.16949545   4.995
+## factor(neighborhood)SUMMERDALE           -0.01768354  0.13581025  -0.130
+## factor(neighborhood)TACONY                0.80322332  0.21592023   3.720
+## factor(neighborhood)TIOGA                 0.48023529  0.11724932   4.096
+## factor(neighborhood)TORRESDALE            0.80574577  0.12938720   6.227
+## factor(neighborhood)UNIVERSITY_CITY       0.33646623  0.10706004   3.143
+## factor(neighborhood)UPPER_ROXBOROUGH      0.65436594  0.11843482   5.525
+## factor(neighborhood)WALNUT_HILL           0.59962264  0.10898738   5.502
+## factor(neighborhood)WASHINGTON_SQUARE     0.62413227  0.10444768   5.976
+## factor(neighborhood)WEST_KENSINGTON       0.44212072  0.10839875   4.079
+## factor(neighborhood)WEST_PARKSIDE         0.25989453  0.14078958   1.846
+## factor(neighborhood)WEST_PASSYUNK         0.59867013  0.11659703   5.135
+## factor(neighborhood)WEST_POPLAR           0.57444507  0.11008271   5.218
+## factor(neighborhood)WEST_POWELTON         0.54061427  0.10590749   5.105
+## factor(neighborhood)WHITMAN               0.69218599  0.10885553   6.359
+## factor(neighborhood)WISSAHICKON           0.56862068  0.10991737   5.173
+## factor(neighborhood)WISSAHICKON_PARK      0.75994291  0.16950341   4.483
+## factor(neighborhood)WISSINOMING           0.55852313  0.19405369   2.878
+## factor(neighborhood)WISTER                0.30078236  0.16938370   1.776
+## factor(neighborhood)WOODLAND_TERRACE      0.70928350  0.11986255   5.917
+## factor(neighborhood)WYNNEFIELD            0.47312668  0.11081791   4.269
+## factor(neighborhood)WYNNEFIELD_HEIGHTS    0.65831032  0.12608113   5.221
+## factor(neighborhood)YORKTOWN              0.48402770  0.12425393   3.895
+## reviews                                   0.00026114  0.00005998   4.354
+## price                                     0.00022336  0.00003159   7.071
+##                                                      Pr(&gt;|t|)    
+## (Intercept)                              &lt; 0.0000000000000002 ***
+## factor(room_type)Private room             0.00000000000000431 ***
+## factor(room_type)Shared room                         0.611395    
+## factor(neighborhood)ANDORRA                          0.033090 *  
+## factor(neighborhood)ASTON_WOODBRIDGE      0.00000222615991391 ***
+## factor(neighborhood)BELLA_VISTA           0.00000000157263416 ***
+## factor(neighborhood)BELMONT                          0.008985 ** 
+## factor(neighborhood)BREWERYTOWN           0.00000803240578984 ***
+## factor(neighborhood)BUSTLETON             0.00000003530586733 ***
+## factor(neighborhood)CALLOWHILL            0.00000115583925115 ***
+## factor(neighborhood)CEDAR_PARK            0.00000007379815450 ***
+## factor(neighborhood)CEDARBROOK                       0.043384 *  
+## factor(neighborhood)CENTER_CITY           0.00000605279089360 ***
+## factor(neighborhood)CHESTNUT_HILL         0.00000004235802324 ***
+## factor(neighborhood)CHINATOWN                        0.002451 ** 
+## factor(neighborhood)COBBS_CREEK           0.00000270197402599 ***
+## factor(neighborhood)DICKINSON_NARROWS     0.00000000756900816 ***
+## factor(neighborhood)DUNLAP                           0.166831    
+## factor(neighborhood)EAST_FALLS            0.00000000967666331 ***
+## factor(neighborhood)EAST_KENSINGTON       0.00000000003459512 ***
+## factor(neighborhood)EAST_OAK_LANE         0.00000000570209068 ***
+## factor(neighborhood)EAST_PARK                        0.557284    
+## factor(neighborhood)EAST_PARKSIDE                    0.012858 *  
+## factor(neighborhood)EAST_PASSYUNK         0.00000000021240314 ***
+## factor(neighborhood)EAST_POPLAR           0.00000037405155971 ***
+## factor(neighborhood)EASTWICK              0.00000949598093728 ***
+## factor(neighborhood)ELMWOOD                          0.000486 ***
+## factor(neighborhood)FAIRMOUNT             0.00000340057962916 ***
+## factor(neighborhood)FELTONVILLE           0.00000796712405094 ***
+## factor(neighborhood)FISHTOWN              0.00000000000972777 ***
+## factor(neighborhood)FITLER_SQUARE         0.00000000000680405 ***
+## factor(neighborhood)FOX_CHASE             0.00000754908810642 ***
+## factor(neighborhood)FRANCISVILLE          0.00000005553911790 ***
+## factor(neighborhood)FRANKFORD                        0.063708 .  
+## factor(neighborhood)FRANKLINVILLE                    0.013609 *  
+## factor(neighborhood)GARDEN_COURT          0.00002765553568410 ***
+## factor(neighborhood)GERMANTOWN_EAST       0.00000067927836160 ***
+## factor(neighborhood)GERMANTOWN_MORTON                0.004618 ** 
+## factor(neighborhood)GERMANTOWN_PENN_KNOX  0.00000379573856999 ***
+## factor(neighborhood)GERMANTOWN_SOUTHWEST             0.003805 ** 
+## factor(neighborhood)GERMANTOWN_WEST_CENT  0.00002696637230337 ***
+## factor(neighborhood)GERMANTOWN_WESTSIDE   0.00000101246336697 ***
+## factor(neighborhood)GERMANY_HILL          0.00001441772355441 ***
+## factor(neighborhood)GIRARD_ESTATES        0.00000000000892259 ***
+## factor(neighborhood)GRADUATE_HOSPITAL     0.00000000005914107 ***
+## factor(neighborhood)GRAYS_FERRY           0.00005224996669739 ***
+## factor(neighborhood)GREENWICH             0.00000019988552934 ***
+## factor(neighborhood)HADDINGTON                       0.378194    
+## factor(neighborhood)HARROWGATE                       0.003299 ** 
+## factor(neighborhood)HARTRANFT             0.00002117832631098 ***
+## factor(neighborhood)HAVERFORD_NORTH                  0.002730 ** 
+## factor(neighborhood)HAWTHORNE             0.00000000042317011 ***
+## factor(neighborhood)HOLMESBURG                       0.000449 ***
+## factor(neighborhood)KINGSESSING                      0.008984 ** 
+## factor(neighborhood)LAWNDALE              0.00001199345528124 ***
+## factor(neighborhood)LEXINGTON_PARK        0.00000093776163550 ***
+## factor(neighborhood)LOGAN                            0.003569 ** 
+## factor(neighborhood)LOGAN_SQUARE          0.00000006803495708 ***
+## factor(neighborhood)LOWER_MOYAMENSING     0.00000000014999512 ***
+## factor(neighborhood)LUDLOW                           0.006309 ** 
+## factor(neighborhood)MANAYUNK              0.00000001322170644 ***
+## factor(neighborhood)MANTUA                0.00002390281718096 ***
+## factor(neighborhood)MAYFAIR                          0.002801 ** 
+## factor(neighborhood)MILL_CREEK            0.00004090062549843 ***
+## factor(neighborhood)MORRELL_PARK                     0.045002 *  
+## factor(neighborhood)MOUNT_AIRY_EAST       0.00000000335322583 ***
+## factor(neighborhood)MOUNT_AIRY_WEST       0.00000000644513595 ***
+## factor(neighborhood)NEWBOLD               0.00000000154685425 ***
+## factor(neighborhood)NORTH_CENTRAL                    0.021413 *  
+## factor(neighborhood)NORTHERN_LIBERTIES    0.00000000000937921 ***
+## factor(neighborhood)NORTHWOOD                        0.000372 ***
+## factor(neighborhood)OGONTZ                           0.167936    
+## factor(neighborhood)OLD_CITY              0.00000013575941911 ***
+## factor(neighborhood)OLD_KENSINGTON        0.00000002741766172 ***
+## factor(neighborhood)OLNEY                 0.00000067999384175 ***
+## factor(neighborhood)OVERBROOK             0.00000025754186313 ***
+## factor(neighborhood)OXFORD_CIRCLE                    0.029980 *  
+## factor(neighborhood)PACKER_PARK                      0.014923 *  
+## factor(neighborhood)PASCHALL                         0.521172    
+## factor(neighborhood)PASSYUNK_SQUARE       0.00000000578770363 ***
+## factor(neighborhood)PENNSPORT             0.00000000006228934 ***
+## factor(neighborhood)PENNYPACK                        0.186927    
+## factor(neighborhood)PENNYPACK_PARK                   0.001483 ** 
+## factor(neighborhood)PENROSE                          0.046030 *  
+## factor(neighborhood)POINT_BREEZE          0.00000000025770686 ***
+## factor(neighborhood)POWELTON              0.00000074016861833 ***
+## factor(neighborhood)QUEEN_VILLAGE         0.00000000852982320 ***
+## factor(neighborhood)RHAWNHURST            0.00000000026931526 ***
+## factor(neighborhood)RICHMOND              0.00000021233177292 ***
+## factor(neighborhood)RITTENHOUSE           0.00000121029073531 ***
+## factor(neighborhood)RIVERFRONT            0.00003207872332331 ***
+## factor(neighborhood)ROXBOROUGH            0.00000001878115330 ***
+## factor(neighborhood)ROXBOROUGH_PARK       0.00000016285623717 ***
+## factor(neighborhood)SHARSWOOD             0.00000384364113994 ***
+## factor(neighborhood)SOCIETY_HILL          0.00000014819743321 ***
+## factor(neighborhood)SOMERTON              0.00000016473781286 ***
+## factor(neighborhood)SOUTHWEST_SCHUYLKILL  0.00000330832016552 ***
+## factor(neighborhood)SPRING_GARDEN         0.00000006252564693 ***
+## factor(neighborhood)SPRUCE_HILL           0.00000648041101801 ***
+## factor(neighborhood)STADIUM_DISTRICT      0.00000044244822664 ***
+## factor(neighborhood)STANTON                          0.128741    
+## factor(neighborhood)STRAWBERRY_MANSION    0.00000059541277447 ***
+## factor(neighborhood)SUMMERDALE                       0.896404    
+## factor(neighborhood)TACONY                           0.000200 ***
+## factor(neighborhood)TIOGA                 0.00004228146220197 ***
+## factor(neighborhood)TORRESDALE            0.00000000048676121 ***
+## factor(neighborhood)UNIVERSITY_CITY                  0.001677 ** 
+## factor(neighborhood)UPPER_ROXBOROUGH      0.00000003347030359 ***
+## factor(neighborhood)WALNUT_HILL           0.00000003821150098 ***
+## factor(neighborhood)WASHINGTON_SQUARE     0.00000000234460890 ***
+## factor(neighborhood)WEST_KENSINGTON       0.00004552950740178 ***
+## factor(neighborhood)WEST_PARKSIDE                    0.064915 .  
+## factor(neighborhood)WEST_PASSYUNK         0.00000028636714672 ***
+## factor(neighborhood)WEST_POPLAR           0.00000018295249815 ***
+## factor(neighborhood)WEST_POWELTON         0.00000033553062165 ***
+## factor(neighborhood)WHITMAN               0.00000000020922316 ***
+## factor(neighborhood)WISSAHICKON           0.00000023309930953 ***
+## factor(neighborhood)WISSAHICKON_PARK      0.00000740203890303 ***
+## factor(neighborhood)WISSINOMING                      0.004005 ** 
+## factor(neighborhood)WISTER                           0.075795 .  
+## factor(neighborhood)WOODLAND_TERRACE      0.00000000333981726 ***
+## factor(neighborhood)WYNNEFIELD            0.00001971878023349 ***
+## factor(neighborhood)WYNNEFIELD_HEIGHTS    0.00000017999992127 ***
+## factor(neighborhood)YORKTOWN              0.00009842912127178 ***
+## reviews                                   0.00001347384041558 ***
+## price                                     0.00000000000160209 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.328 on 15139 degrees of freedom
+## Multiple R-squared:  0.1122, Adjusted R-squared:  0.1049 
+## F-statistic: 15.31 on 125 and 15139 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Dataset</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BDS 522</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">BDS 522 Project</a>
+</li>
+<li>
+  <a href="about.html">Data</a>
+</li>
+<li>
+  <a href="analysis.html">Analysis</a>
+</li>
+<li>
+  <a href="Discussion.html">Discussion/Conclusion</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Dataset</h1>
+
+</div>
+
+
+<blockquote>
+<p>The dataset that i used was from Tom Slee, who used a data scraping code to gather data from Airbnb’s website. I chose data from Airbnb listings in philadelphia that were collected in 2017. <a href="http://tomslee.net/airbnb-data-collection-get-the-data">Here</a> you can find the datasource. For analysis, I used only listings that either had at least 1 review, as a listing with no reviews could not have a overall satisfaction rating, and those that had a rating of zero, as there were no values from 2 -&gt; 0 on the overall satisfaction rating scale. This resulted in 2465 total listings being accounted for during statistical analysis. The variables that were available were room type, neighborhood, reviews, overall satisfaction with the stay, and price. I did not analyze room id, host id, accomodation size, bedrooms, and latitude/longitude that were also included in this dataset.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>Starting with room type, below is the frequency plot of all room types: entire home, private room and shared room.</p>
+</blockquote>
+<pre class="r"><code>barplot(table(room_type))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>count(room_type)</code></pre>
+<pre><code>##                 x freq
+## 1 Entire home/apt 7964
+## 2    Private room 7028
+## 3     Shared room  273</code></pre>
+<blockquote>
+<p>Next is neighborhood, there were 122 neighborhoods identified in the data:</p>
+</blockquote>
+<pre class="r"><code>barplot(table(neighborhood))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>count(neighborhood)</code></pre>
+<pre><code>##                        x freq
+## 1         ALLEGHENY_WEST   10
+## 2                ANDORRA   14
+## 3       ASTON_WOODBRIDGE    6
+## 4            BELLA_VISTA  277
+## 5                BELMONT   15
+## 6            BREWERYTOWN  118
+## 7              BUSTLETON   23
+## 8             CALLOWHILL  184
+## 9             CEDAR_PARK  442
+## 10            CEDARBROOK    6
+## 11           CENTER_CITY  318
+## 12         CHESTNUT_HILL  110
+## 13             CHINATOWN  126
+## 14           COBBS_CREEK   34
+## 15     DICKINSON_NARROWS  144
+## 16                DUNLAP    2
+## 17            EAST_FALLS  132
+## 18       EAST_KENSINGTON  148
+## 19         EAST_OAK_LANE   53
+## 20             EAST_PARK   33
+## 21         EAST_PARKSIDE   15
+## 22         EAST_PASSYUNK  237
+## 23           EAST_POPLAR   42
+## 24              EASTWICK   16
+## 25               ELMWOOD    4
+## 26             FAIRMOUNT  308
+## 27           FELTONVILLE    5
+## 28              FISHTOWN  755
+## 29         FITLER_SQUARE   74
+## 30             FOX_CHASE    7
+## 31          FRANCISVILLE  251
+## 32             FRANKFORD   24
+## 33         FRANKLINVILLE   30
+## 34          GARDEN_COURT  129
+## 35       GERMANTOWN_EAST   18
+## 36     GERMANTOWN_MORTON   20
+## 37  GERMANTOWN_PENN_KNOX   76
+## 38  GERMANTOWN_SOUTHWEST   38
+## 39  GERMANTOWN_WEST_CENT  144
+## 40   GERMANTOWN_WESTSIDE   46
+## 41          GERMANY_HILL    6
+## 42        GIRARD_ESTATES   54
+## 43     GRADUATE_HOSPITAL  690
+## 44           GRAYS_FERRY  145
+## 45             GREENWICH   21
+## 46            HADDINGTON    1
+## 47            HARROWGATE   53
+## 48             HARTRANFT  152
+## 49       HAVERFORD_NORTH   18
+## 50             HAWTHORNE  133
+## 51            HOLMESBURG   21
+## 52           KINGSESSING   86
+## 53              LAWNDALE    9
+## 54        LEXINGTON_PARK    6
+## 55                 LOGAN   10
+## 56          LOGAN_SQUARE  463
+## 57     LOWER_MOYAMENSING  145
+## 58                LUDLOW    9
+## 59              MANAYUNK  141
+## 60                MANTUA  187
+## 61               MAYFAIR   11
+## 62            MILL_CREEK   60
+## 63          MORRELL_PARK    1
+## 64       MOUNT_AIRY_EAST  147
+## 65       MOUNT_AIRY_WEST  209
+## 66               NEWBOLD  251
+## 67         NORTH_CENTRAL  123
+## 68    NORTHERN_LIBERTIES  363
+## 69             NORTHWOOD   10
+## 70                OGONTZ    2
+## 71              OLD_CITY  387
+## 72        OLD_KENSINGTON  146
+## 73                 OLNEY   22
+## 74             OVERBROOK   30
+## 75         OXFORD_CIRCLE   19
+## 76           PACKER_PARK    1
+## 77              PASCHALL   18
+## 78       PASSYUNK_SQUARE  410
+## 79             PENNSPORT  143
+## 80             PENNYPACK    2
+## 81        PENNYPACK_PARK    2
+## 82               PENROSE    6
+## 83          POINT_BREEZE  635
+## 84              POWELTON   95
+## 85         QUEEN_VILLAGE  317
+## 86            RHAWNHURST   20
+## 87              RICHMOND   64
+## 88           RITTENHOUSE 1781
+## 89            RIVERFRONT   48
+## 90            ROXBOROUGH   78
+## 91       ROXBOROUGH_PARK    8
+## 92             SHARSWOOD   11
+## 93          SOCIETY_HILL  161
+## 94              SOMERTON    7
+## 95  SOUTHWEST_SCHUYLKILL   15
+## 96         SPRING_GARDEN  341
+## 97           SPRUCE_HILL  485
+## 98      STADIUM_DISTRICT   29
+## 99               STANTON   13
+## 100   STRAWBERRY_MANSION    6
+## 101           SUMMERDALE   14
+## 102               TACONY    3
+## 103                TIOGA   36
+## 104           TORRESDALE   18
+## 105      UNIVERSITY_CITY  154
+## 106     UPPER_ROXBOROUGH   33
+## 107          WALNUT_HILL   98
+## 108    WASHINGTON_SQUARE  828
+## 109      WEST_KENSINGTON  109
+## 110        WEST_PARKSIDE   12
+## 111        WEST_PASSYUNK   38
+## 112          WEST_POPLAR   80
+## 113        WEST_POWELTON  239
+## 114              WHITMAN   99
+## 115          WISSAHICKON   82
+## 116     WISSAHICKON_PARK    6
+## 117          WISSINOMING    4
+## 118               WISTER    6
+## 119     WOODLAND_TERRACE   30
+## 120           WYNNEFIELD   71
+## 121   WYNNEFIELD_HEIGHTS   21
+## 122             YORKTOWN   23</code></pre>
+<blockquote>
+<p>Now with the total amount of reviews for a single listing/property</p>
+</blockquote>
+<pre class="r"><code>hist(reviews)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>summary(reviews)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    3.00    7.00   17.00   33.61   40.00  538.00</code></pre>
+<blockquote>
+<p>And now lastly with the price distribution of the listings</p>
+</blockquote>
+<pre class="r"><code>hist(price)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>summary(price)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    10.0    51.0    80.0   107.8   125.0  1400.0</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

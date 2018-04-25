@@ -1,0 +1,12 @@
+---
+title: "Analysis"
+---
+
+>   For this dataset I will be looking at hypotheses relating to overall satisfaction with the stay. Starting with room type, I predict that a entire home will result in higher average overall satisfaction as compaired to a full room or shared room accomodations. I hypothesize that there will be a relationship between neighborhoods and overall satisfaction, but I have no prenotions of which neighborhoods will be higher or lower than the average rating. I predict that number of reviews will have a positive correlation with the overall rating of the listing, as an initial positive review may lead to more clients renting that listing and having more positive experiences, which drive even more reviews/bookings. Lastly I predict that increased price will have a positive relationship in regards to overall satisfaction. 
+
+----
+> Below is the linear regression that I ran with accomodations, neighborhoods, reviews, and price's effects controlled for all other factors on overall satisfaction with the stay. 
+
+```{r}
+summary(airbnbreg)
+```
